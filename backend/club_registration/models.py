@@ -1,7 +1,7 @@
 from django.db import models
 
 class ClubMember(models.Model):
-    """Post-event club registration"""
+
     DEPARTMENT_CHOICES = [
         ('cybersec', 'Cybersecurity'),
         ('dev', 'Development'),
