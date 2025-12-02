@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from .models import Team
 
-class TeamLoginSerialzer(serializers.Serializer):
+class TeamLoginSerializer(serializers.Serializer):
     """
     hada serializer bach team ydir login nhar lou3ba
     n7tajou nvalidiw name ta3 team wel password

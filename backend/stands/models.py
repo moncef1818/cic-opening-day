@@ -1,3 +1,35 @@
 from django.db import models
 
-# Create your models here.
+class Stand(models.Model):
+
+    name = models.CharField(
+        max_length=100,
+        unique=True,
+        help_text="the name of the stand"
+    )
+
+    game_type = models.CharField(
+        max_length=100,
+        help_text="Type of game/challenge (e.g., 'Arduino', 'Memory flip', 'Hacking room')"
+    )
+
+    duration_minutes = models.IntegerField(
+        default=15,
+        help_text="Recommended time for this challenge (minutes)"
+    )
+
+    description = models.TextField(
+        blank=True,
+        help_text="Detailed description of the challenge"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = "Stand"
+        verbose_name_plural = "Stands"
+    
+    def __str__(self):
+        return f"{self.name} ({self.game_type})"
+
