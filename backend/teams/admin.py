@@ -1,14 +1,26 @@
 from django.contrib import admin
-from .models import Team, TeamMember
+from .models import Team
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'member_count', 'total_points', 'created_at')
+    """
+    Admin Pannel for team Managment 
+    Yst3mlouha Jma3at HR bch yrigistriw l teams
+    """
+    list_display = ('id','name','created_at')
     search_fields = ('name',)
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('created_at',)
+    ordering = ('name',)
 
-@admin.register(TeamMember)
-class TeamMemberAdmin(admin.ModelAdmin):
-    list_display = ('user', 'team', 'joined_at')
-    list_filter = ('team',)
-    search_fields = ('user__username', 'team__name')
+        # Override save to handle password hashing in admin
+    def save_model(self, request, obj, form, change):
+        # If password was changed in admin, hash it
+        if 'password' in form.changed_data:
+            obj.set_password(form.cleaned_data['password'])
+        else:
+            super().save_model(request, obj, form, change)
+
+
+
+
+# Register your models here.
