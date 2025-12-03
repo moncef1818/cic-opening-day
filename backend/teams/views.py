@@ -1,41 +1,78 @@
-from rest_framework import status, generics
-from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
-from .serializers import UserRegistrationSerializer, UserSerializer
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import TeamLoginSerializer, TeamSerializer
+from .models import Team
 
-class UserRegistrationView(generics.CreateAPIView):
+
+class TeamLoginView(APIView):
     """
-    User registration endpoint
-    POST /api/auth/register/
-    """
-    queryset = User.objects.all()
-    serializer_class = UserRegistrationSerializer
-    permission_classes = [AllowAny]  
+    Team login endpoint.
+    Authenticates team and returns JWT tokens with team_id in payload.
     
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        
-        return Response({
-            'success': True,
-            'message': 'User registered successfully!',
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-            }
-        }, status=status.HTTP_201_CREATED)
-
-class CurrentUserView(APIView):
+    POST /api/team/login/
+    Body: {team_name, password}
+    Response: {access token , refresh token, team: {...}}
     """
-    Get current authenticated user info
-    GET /api/auth/me/
+    permission_classes = []  # Public endpoint
+    
+    def post(self, request):
+        serializer = TeamLoginSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            team = serializer.validated_data['team']
+            
+            # Generate JWT tokens with team_id in payload
+            refresh = RefreshToken.for_user(team)
+            
+            # Add custom claim: team_id instead of user_id
+            refresh['team_id'] = team.id
+            refresh['team_name'] = team.name
+            
+            # Prepare response
+            team_data = TeamSerializer(team).data
+            
+            return Response({
+                'access': str(refresh.access_token),
+                'refresh': str(refresh),
+                'team': team_data
+            }, status=status.HTTP_200_OK)
+        
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+
+class TeamCurrentView(APIView):
+    """
+    Get current team information from JWT token.
+    
+    GET /api/teams/my/
+    Headers: Authorization: Bearer <access_token>
+    Response: {id, name, created_at}
     """
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data)
+        # Extract team_id from JWT token
+        token = request.auth
+        team_id = token.get('team_id') if token else None
+        
+        if not team_id:
+            return Response(
+                {'error': 'Invalid token: team_id not found'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+        
+        try:
+            team = Team.objects.get(id=team_id)
+            serializer = TeamSerializer(team)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Team.DoesNotExist:
+            return Response(
+                {'error': 'Team not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )

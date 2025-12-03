@@ -1,32 +1,44 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from .models import Team, TeamMember
+from django.contrib.auth.password_validation import validate_password
+from .models import Team
 
-class UserRegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, min_length=8)
-    password2 = serializers.CharField(write_only=True, label="Confirm Password")
-
-    class Meta:
-        model = User
-        fields = ['username','email','password','password2','first_name','last_name']
+class TeamLoginSerializer(serializers.Serializer):
+    """
+    hada serializer bach team ydir login nhar lou3ba
+    n7tajou nvalidiw name ta3 team wel password
+    """
+    team_name = serializers.CharField(max_length=100)
+    password = serializers.CharField(
+        write_only = True,
+        style={'input_type': 'password'}
+    )
 
     def validate(self, data):
-        if data['password'] != data['password2']:
-            raise serializers.ValidationError({"password": "Passwords don't match!"})
+        """ Check team name wel password esq y existiw"""
+
+        team_name = data.get('team_name')
+        password = data.get('password') 
+
+        try:
+            team = Team.objects.get(name = team_name)
+        except Team.DoesNotExist:
+            raise serializers.ValidationError(
+                {"team_name": "Team not found."}
+            )
+        if not team.check_password(password):
+            raise serializers.ValidationError(
+                {"password": "Invalid password."}
+            )
+        
+        data['team'] = team
+
         return data
-    
-    def create(self, validated_data):
-        validated_data.pop('password2')
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data.get('email', ''),
-            password=validated_data['password'],
-            first_name=validated_data.get('first_name', ''),
-            last_name=validated_data.get('last_name', '')
-        )
-        return user
-    
-class UserSerializer(serializers.ModelSerializer):
+
+class TeamSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Team model.
+    Returns team information (without password) ll authenticated users    """
     class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        model = Team
+        fields = ['id', 'name', 'created_at']
+        read_only_fields = ['id', 'created_at']
