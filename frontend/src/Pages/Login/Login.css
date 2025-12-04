@@ -175,7 +175,7 @@
   }
 }
 
-/* Small phones (iPhone 5, Galaxy Mini) <= 360px */
+/* Small phones <= 360px */
 @media (max-width: 360px) {
   .Login-page {
     width: 92%;
