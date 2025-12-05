@@ -40,5 +40,48 @@ class FlagSubmission(models.Model):
     
     def __str__(self):
         return f"{self.team.name} - {self.awarded_points}pts @ {self.flag.stand.name}"
+    
+class EventPhase(models.Model):
+    """
+    Controls if game has ended.
+    Only one instance should exist (singleton pattern).
+    """
+    PHASE_CHOICES = [
+        ('GAME_ACTIVE', 'Game Active (Teams Can Play)'),
+        ('POST_EVENT', 'Post-Event (Club Registration Only)'),
+    ]
+    
+    current_phase = models.CharField(
+        max_length=20,
+        choices=PHASE_CHOICES,
+        default='GAME_ACTIVE',
+        help_text="Current event phase"
+    )
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.CharField(max_length=100, blank=True)
+    
+    class Meta:
+        verbose_name = "Event Phase"
+        verbose_name_plural = "Event Phase"
+    
+    def __str__(self):
+        return f"Current Phase: {self.get_current_phase_display()}"
+    
+    @classmethod
+    def get_current(cls):
+        """Get the current phase (singleton)"""
+        phase, created = cls.objects.get_or_create(id=1)
+        return phase.current_phase
+    
+    @classmethod
+    def is_game_active(cls):
+        """Check if game is currently active"""
+        return cls.get_current() == 'GAME_ACTIVE'
+    
+    @classmethod
+    def has_ended(cls):
+        """Check if game has ended"""
+        return cls.get_current() == 'POST_EVENT'
+
 
 # Create your models here.

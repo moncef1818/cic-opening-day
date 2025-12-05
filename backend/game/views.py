@@ -3,20 +3,30 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Count, Sum
-from .models import Flag, FlagSubmission
+from .models import Flag, FlagSubmission , EventPhase
 from .serializers import FlagSubmitSerializer, LeaderboardSerializer
 from teams.models import Team
 import hashlib
-
 from django.contrib.auth.hashers import make_password
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
+@method_decorator(ratelimit(key='user', rate='10/m', method='POST'), name='dispatch')
 class FlagSubmitView(APIView):
     """Submit a flag code."""
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
+
+        if EventPhase.has_ended():
+            return Response({
+                'error': 'Game has ended. Thank you for playing!',
+                'redirect': '/club-register'
+            }, status=status.HTTP_403_FORBIDDEN)
+        
         serializer = FlagSubmitSerializer(data=request.data)
         
+
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
@@ -129,5 +139,18 @@ class TeamStatsView(APIView):
             'total_gems': team.total_gems or 0,
             'total_points': team.total_points or 0,
             'rank': rank
+        }, status=status.HTTP_200_OK)
+    
+class EventPhaseView(APIView):
+    """Get current event phase. Public endpoint."""
+    permission_classes = []
+    
+    def get(self, request):
+        has_ended = EventPhase.has_ended()
+        
+        return Response({
+            'game_active': not has_ended,
+            'has_ended': has_ended,
+            'message': 'Game has ended. Join our club!' if has_ended else 'Game is active!'
         }, status=status.HTTP_200_OK)
 

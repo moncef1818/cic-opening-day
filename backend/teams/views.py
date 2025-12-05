@@ -5,8 +5,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import TeamLoginSerializer, TeamSerializer
 from .models import Team
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
-
+@method_decorator(ratelimit(key='ip', rate='5/m', method='POST'), name='dispatch')
 class TeamLoginView(APIView):
     """
     Team login endpoint.
@@ -45,6 +47,34 @@ class TeamLoginView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
+@method_decorator(ratelimit(key='ip', rate='10/m', method='POST'), name='dispatch')
+class TeamRefreshTokenView(APIView):
+    """Refresh access token using refresh token. Rate limited to 10/min."""
+    # NO permission_classes here! ← Should be no authentication required
+    permission_classes = []
+    def post(self, request):
+        refresh_token = request.data.get('refresh')
+        
+        if not refresh_token:
+            return Response({
+                'error': 'Refresh token is required'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            # Validate and decode refresh token
+            token = RefreshToken(refresh_token)
+            
+            # Generate new access token
+            new_access_token = str(token.access_token)
+            
+            return Response({
+                'access': new_access_token
+            }, status=status.HTTP_200_OK)
+            
+        except TokenError:
+            return Response({
+                'error': 'Invalid or expired refresh token'
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
 class TeamCurrentView(APIView):
     """
