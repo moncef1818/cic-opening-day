@@ -1,0 +1,633 @@
+/* Base styles */
+#backgroundimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  z-index: 3;
+  position: fixed;
+}
+
+.pop-ups {
+  position: relative;
+  z-index: 10;
+  bottom: 300px;
+}
+
+#enchrbook {
+  position: relative;
+  z-index: 4;
+  height: 560px;
+  width: 400px;
+  left: 420px;
+  top: 250px;
+}
+
+#mainbimo {
+  position: relative;
+  z-index: 4;
+  bottom: 290px;
+  left: 480px;
+}
+#bimobtn:hover{
+ border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+#bimobtn {
+  position: fixed;
+  z-index: 6;
+  left: 900px;
+  bottom: 330px;
+  width: 70px;
+  height: 50px;
+  background-color: transparent;
+ 
+  cursor: pointer;
+}
+
+#sandybtn {
+  position: fixed;
+  z-index: 6;
+  top: 380px;
+  left: 750px;
+  width: 70px;
+  height: 50px;
+  background-color: transparent;
+ 
+  cursor: pointer;
+}
+#sandybtn:hover{
+   border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#kingbtn {
+  position: fixed;
+  z-index: 6;
+  top: 380px;
+  left: 830px;
+  width: 75px;
+  height: 50px;
+  background-color: transparent;
+  
+  cursor: pointer;
+}
+#kingbtn:hover{
+   border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#marcelinebtn {
+  position: fixed;
+  z-index: 6;
+  top: 500px;
+  left: 890px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+
+  cursor: pointer;
+}
+#marcelinebtn:hover{
+   border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#lichbtn {
+  position: fixed;
+  z-index: 6;
+  top: 580px;
+  left: 870px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+ 
+  cursor: pointer;
+}
+#lichbtn:hover{
+    border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#cloudbtn {
+  position: fixed;
+  z-index: 6;
+  top: 580px;
+  left: 700px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+ 
+  cursor: pointer;
+}
+#cloudbtn:hover{
+   border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#candybtn {
+  position: fixed;
+  z-index: 6;
+  top: 490px;
+  left: 680px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+
+  cursor: pointer;
+}
+#candybtn:hover{
+  border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#jaykbtn {
+  position: fixed;
+  z-index: 6;
+  top: 430px;
+  left: 680px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+ 
+  cursor: pointer;
+}
+#jaykbtn:hover,
+#jaykbtn:active{
+   border:none;
+   background: inherit;
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#mainciclogo {
+  position: absolute;
+  z-index: 6;
+  left: 650px;
+  height: 150px;
+  width: 350px;
+}
+
+#Games {
+  background-color: rgba(240, 255, 255, 0.205);
+  backdrop-filter: blur(10px);
+  border: rgba(255, 255, 255, 0.575) solid 1px;
+  position: absolute;
+  border-radius: 100px;
+  z-index: 6;
+  top: 152px;
+  left: 640px;
+  height: 100px;
+  width: 400px;
+  color: aliceblue;
+  font-size: 30px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Large Desktop: 1200px+ (default styles above) */
+
+/* Medium Desktop: 992px to 1199px */
+@media (max-width: 1199px) {
+  #mainciclogo {
+    width: 300px;
+    height: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #Games {
+    width: 350px;
+    height: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 140px;
+    font-size: 26px;
+  }
+
+  #enchrbook {
+    width: 350px;
+    height: 490px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 220px;
+  }
+
+  #mainbimo {
+    width: 120px;
+    left: 50%;
+    transform: translateX(-180%);
+    bottom: 200px;
+  }
+
+  #bimobtn {
+    left: 58%;
+    bottom: auto;
+    top: 470px;
+  }
+
+  #sandybtn {
+    left: 42%;
+    top: 415px;
+  }
+
+  #kingbtn {
+    left: 51%;
+    top: 415px;
+  }
+
+  #marcelinebtn {
+    left: 60%;
+    top: 525px;
+  }
+
+  #lichbtn {
+    left: 60%;
+    top: 595px;
+  }
+
+  #cloudbtn {
+    left: 38%;
+    top: 595px;
+  }
+
+  #candybtn {
+    left: 38%;
+    top: 530px;
+  }
+
+  #jaykbtn {
+    left: 38%;
+    top: 460px;
+  }
+}
+
+/* Tablet: 768px to 991px */
+@media (max-width: 991px) {
+  #mainciclogo {
+    width: 250px;
+    height: 110px;
+    left: 50%;
+    top: 20px;
+  }
+
+  #Games {
+    width: 300px;
+    height: 80px;
+    top: 120px;
+    font-size: 24px;
+  }
+
+  #enchrbook {
+    width: 320px;
+    height: 450px;
+    top: 190px;
+  }
+
+  #mainbimo {
+    width: 100px;
+    transform: translateX(-160%);
+    bottom: 180px;
+  }
+
+  #bimobtn {
+    width: 60px;
+    height: 45px;
+    left: 57%;
+    top: 420px;
+  }
+
+  #sandybtn {
+    width: 60px;
+    height: 45px;
+    left: 42%;
+    top: 375px;
+  }
+
+  #kingbtn {
+    width: 60px;
+    height: 45px;
+    left: 51%;
+    top: 375px;
+  }
+
+  #marcelinebtn {
+    width: 60px;
+    height: 45px;
+    left: 59%;
+    top: 475px;
+  }
+
+  #lichbtn {
+    width: 60px;
+    height: 45px;
+    left: 59%;
+    top: 540px;
+  }
+
+  #cloudbtn {
+    width: 60px;
+    height: 45px;
+    left: 39%;
+    top: 540px;
+  }
+
+  #candybtn {
+    width: 60px;
+    height: 45px;
+    left: 39%;
+    top: 480px;
+  }
+
+  #jaykbtn {
+    width: 60px;
+    height: 45px;
+    left: 39%;
+    top: 415px;
+  }
+}
+
+/* Large Phone: 481px to 767px */
+@media (max-width: 767px) {
+  #mainciclogo {
+    width: 200px;
+    height: 90px;
+    top: 30px;
+  }
+
+  #Games {
+    width: 260px;
+    height: 70px;
+    top: 115px;
+    font-size: 22px;
+  }
+
+  #enchrbook {
+    width: 300px;
+    height: 420px;
+    top: 170px;
+  }
+
+  #mainbimo {
+    width: 90px;
+    transform: translateX(-150%);
+    bottom: 150px;
+  }
+
+  #bimobtn {
+    width: 55px;
+    height: 42px;
+    left: 57%;
+    top: 385px;
+  }
+
+  #sandybtn {
+    width: 55px;
+    height: 42px;
+    left: 42%;
+    top: 345px;
+  }
+
+  #kingbtn {
+    width: 55px;
+    height: 42px;
+    left: 51%;
+    top: 345px;
+  }
+
+  #marcelinebtn {
+    width: 55px;
+    height: 42px;
+    left: 58%;
+    top: 435px;
+  }
+
+  #lichbtn {
+    width: 55px;
+    height: 42px;
+    left: 58%;
+    top: 495px;
+  }
+
+  #cloudbtn {
+    width: 55px;
+    height: 42px;
+    left: 40%;
+    top: 495px;
+  }
+
+  #candybtn {
+    width: 55px;
+    height: 42px;
+    left: 40%;
+    top: 440px;
+  }
+
+  #jaykbtn {
+    width: 55px;
+    height: 42px;
+    left: 40%;
+    top: 380px;
+  }
+}
+
+/* Small Phone: 381px to 480px */
+@media (max-width: 480px) {
+  #mainciclogo {
+    width: 180px;
+    height: 80px;
+    top: 25px;
+  }
+
+  #Games {
+    height: 60px;
+    width: 250px;
+    top: 110px;
+    font-size: 20px;
+  }
+
+  #enchrbook {
+    width: 290px;
+    height: 400px;
+    top: 160px;
+    left: 130px;
+  }
+
+  #mainbimo {
+    width: 85px;
+    transform: translateX(-140%);
+    bottom: 270px;
+    left: 170px;
+  }
+
+  #bimobtn {
+    left: 57%;
+    top: 285px;
+    width: 65px;
+    height: 40px;
+  }
+
+  #sandybtn {
+    width: 50px;
+    height: 40px;
+    left: 35%;
+    top: 248px;
+  }
+
+  #kingbtn {
+    left: 48%;
+    top: 248px;
+   width: 65px;
+    height: 40px;
+  }
+
+  #marcelinebtn {
+    left: 58%;
+    top: 330px;
+    width: 65px;
+    height: 40px;
+  }
+
+  #lichbtn {
+    left: 58%;
+    top: 400px;
+     width: 65px;
+    height: 40px;
+  }
+
+  #cloudbtn {
+    left: 26%;
+    top: 400px;
+    width: 50px;
+    height: 40px;
+  }
+
+  #candybtn {
+    left: 22%;
+    top: 338px;
+    width: 60px;
+    height: 40px;
+  }
+
+  #jaykbtn {
+    width: 55px;
+    height: 40px;
+    left: 25%;
+    top: 290px;
+  }
+}
+
+/* Extra Small Phone: 320px to 380px */
+@media (max-width: 380px) {
+  #mainciclogo {
+    width: 160px;
+    height: 70px;
+    top: 30px;
+  }
+
+  #Games {
+    height: 55px;
+    width: 230px;
+    top: 105px;
+    font-size: 18px;
+  }
+
+  #enchrbook {
+    width: 270px;
+    height: 380px;
+    top: 170px;
+  }
+
+  #mainbimo {
+    width: 75px;
+    transform: translateX(-130%);
+    bottom: 250px;
+    left: 140px;
+  }
+
+  #bimobtn {
+    left: 60%;
+    top: 290px;
+    width: 58px;
+    height: 38px;
+  }
+
+  #sandybtn {
+    width: 48px;
+    height: 38px;
+    left: 40%;
+    top: 255px;
+  }
+
+  #kingbtn {
+    left: 53%;
+    top: 255px;
+    width: 48px;
+    height: 38px;
+  }
+
+  #marcelinebtn {
+    left: 60%;
+    top: 335px;
+    width: 56px;
+    height: 38px;
+  }
+
+  #lichbtn {
+    left: 64%;
+    top: 400px;
+    width: 55px;
+    height: 38px;
+  }
+
+  #cloudbtn {
+    left: 30%;
+    top: 400px;
+    width: 48px;
+    height: 38px;
+  }
+
+  #candybtn {
+    left: 27%;
+    top: 335px;
+    width: 48px;
+    height: 38px;
+  }
+
+  #jaykbtn {
+    width: 48px;
+    height: 38px;
+    left: 30%;
+    top: 289px;
+  }
+}
