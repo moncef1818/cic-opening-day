@@ -4,6 +4,7 @@ import Login from './Pages/Login/Login'
 import ClubRegister from './Pages/Club-register/ClubRegister'
 import Error from './Pages/Error/Error'
 import './App.css'
+import Leaderboard from './leadboard'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/login' element={<Error/>}/>
         ) }
       <Route path="/" element={<Home />} />  
+      <Route path="/leadboard" element={<Leaderboard />} />
       <Route path="/club-register" element={<ClubRegister />} />
       <Route path="*" element={<Navigate to="/login" />} /> {/* for any other paths */}
     </Routes>
