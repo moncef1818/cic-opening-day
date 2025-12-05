@@ -1,0 +1,219 @@
+/* marceline.css */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 8px solid #f7d794;
+  position: relative;
+}
+#marceline-input {
+     
+  font-weight: bold;
+    border-radius: 100px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+  .submit-btn {
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+.scene::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border: 5px solid #f5cd79;
+  border-radius: 30px;
+  z-index: -1;
+}
+
+.scene-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.scene-header h1 {
+  color: #574b90;
+  font-size: 3rem;
+  text-shadow: 3px 3px 0 #f7d794;
+  margin-bottom: 10px;
+}
+
+.scene-header p {
+  color: #786fa6;
+  font-size: 1.2rem;
+}
+
+.desktop-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.desktop-item {
+  background: linear-gradient(145deg, #a29bfe, #6c5ce7);
+  color: white;
+  padding: 30px 15px;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 8px 0 #574b90;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.desktop-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 0 #574b90;
+}
+
+.flag-trigger {
+  background: linear-gradient(145deg, #f8a5c2, #f78fb3);
+  padding: 30px 15px;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 0 #cf6a87;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.flag-trigger:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 0 #cf6a87;
+}
+
+.flag-icon {
+  font-size: 2.5rem;
+}
+
+.flag-label {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #cf6a87;
+}
+
+.open-popup-btn {
+  display: block;
+  margin: 0 auto 30px;
+  padding: 18px 40px;
+  background: linear-gradient(to right, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 0 #c44569;
+  transition: all 0.2s;
+}
+
+.open-popup-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 0 #c44569;
+}
+
+.submitted-flags {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 20px;
+  border: 4px dashed #786fa6;
+}
+
+.submitted-flags h3 {
+  color: #574b90;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.submitted-flags ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.submitted-flags li {
+  background: #a29bfe;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Responsive styles for the home component */
+@media (max-width: 768px) {
+  .scene {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .scene-header h1 {
+    font-size: 2rem;
+  }
+  
+  .scene-header p {
+    font-size: 1rem;
+  }
+  
+  .desktop-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .desktop-item, .flag-trigger {
+    padding: 20px 10px;
+    font-size: 1.2rem;
+  }
+  
+  .open-popup-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .scene {
+    padding: 15px;
+    border-width: 5px;
+  }
+  
+  .scene-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .desktop-items {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .desktop-item, .flag-trigger {
+    padding: 18px 10px;
+    font-size: 1.1rem;
+  }
+  
+  .open-popup-btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+}
