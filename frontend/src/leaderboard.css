@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display:wght@400&display=swap');
+
+/* ============================= */
+/* FULL PAGE BACKGROUND */
+/* ============================= */
+.leaderboard-page {
+  min-height: 100vh;
+  background: url("/public/backgroundlb.jpg") no-repeat center center;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 160px 20px 160px 20px; /* ✅ BIG MARGINS = BIG BACKGROUND */
+  box-sizing: border-box;
+}
+
+/* ============================= */
+/* MAIN GLASS CARD */
+/* ============================= */
+.leaderboard-wrapper {
+  position: relative;
+  width: 900px;
+  max-width: 95vw;
+
+  background: rgba(255, 255, 255, 0.57); /* ✅ FIGMA TRANSPARENCY */
+  border-radius: 16px;
+
+  padding-top: 90px;
+  padding-bottom: 24px;
+
+  overflow: visible; /* ✅ LOGO NEVER CUT */
+}
+
+/* ============================= */
+/* FLOATING LOGO */
+/* ============================= */
+.leaderboard-logo {
+  position: absolute;
+    width:   300px;
+    top: -70px;   
+    right: -95px;   /* ✅ A LITTLE BIGGER */
+  height: auto;
+
+  z-index: 50;
+  pointer-events: none;
+}
+
+
+/* ============================= */
+/* TITLE */
+/* ============================= */
+.leaderboard-title {
+  font-family: "Libre Caslon Display", serif;
+  font-size: 64px;
+  font-weight: 400;
+  letter-spacing: 4%;
+  line-height: 100%;
+
+  color: white;
+  text-align: center;
+
+  margin: 0;
+}
+
+/* ============================= */
+/* DIVIDER */
+/* ============================= */
+.leaderboard-divider {
+  width: 90%;
+  height: 1px;
+  background: #ffffff;
+  margin: 16px auto 32px auto;
+  transform: rotate(-0.16deg);
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.leaderboard-table tbody tr {
+  height: 70px;
+}
+
+.leaderboard-table td {
+  height: 70px;
+  padding: 0 10px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  font-family: "Libre Baskerville", serif;
+  font-size: 28px;
+  color: #000;
+}
+
+/* ============================= */
+/* COLUMNS */
+/* ============================= */
+.col-rank   { width: 90px; }
+.col-team   { width: auto; }
+.col-gems   { width: 160px; }
+.col-points { width: 160px; }
+
+/* ============================= */
+/* MEDALS */
+/* ============================= */
+.medal {
+  display: block;
+  margin: auto;
+}
+
+.medal.top-three {
+  width: 60px;
+}
+
+.medal.top-five {
+  width: 45px;
+}
+
+/* ============================= */
+/* ✅ MOBILE RESPONSIVE */
+/* ============================= */
+@media (max-width: 768px) {
+
+  .leaderboard-page {
+    padding: 120px 10px 120px 10px;
+  }
+
+  .leaderboard-wrapper {
+    width: 100%;
+    padding-top: 70px;
+  }
+
+  .leaderboard-logo {
+    width: 160px;
+    top: -70px;   
+    right: -36px;
+  }
+
+  .leaderboard-title {
+    font-size: 38px;
+  }
+
+  .leaderboard-table tbody tr {
+    height: 58px;
+  }
+
+  .leaderboard-table td {
+    font-size: 18px;
+  }
+
+  .medal.top-three { width: 42px; }
+  .medal.top-five  { width: 34px; }
+}
