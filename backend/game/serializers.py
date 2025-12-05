@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Flag, FlagSubmission
+import re
 
 
 class FlagSubmitSerializer(serializers.Serializer):
