@@ -7,6 +7,7 @@ from .serializers import TeamLoginSerializer, TeamSerializer
 from .models import Team
 from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
+from rest_framework_simplejwt.exceptions import TokenError
 
 @method_decorator(ratelimit(key='ip', rate='5/m', method='POST'), name='dispatch')
 class TeamLoginView(APIView):
@@ -50,7 +51,6 @@ class TeamLoginView(APIView):
 @method_decorator(ratelimit(key='ip', rate='10/m', method='POST'), name='dispatch')
 class TeamRefreshTokenView(APIView):
     """Refresh access token using refresh token. Rate limited to 10/min."""
-    # NO permission_classes here! ← Should be no authentication required
     permission_classes = []
     def post(self, request):
         refresh_token = request.data.get('refresh')
