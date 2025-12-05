@@ -1,25 +1,17 @@
-import { useState } from 'react'
-import {  BrowserRouter as Router, Routes,Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'  
 import Home from './Pages/Home/Home'
-import Map from './Pages/Map/Map'
-import TeamRegister from './Pages/Team-register/TeamRegister'
+import Login from './Pages/Login/Login'
 import ClubRegister from './Pages/Club-register/ClubRegister'
-import Navbar from './Components/Navbar'
-import Footer from './Components/Footer'
 import './App.css'
 
 function App() {
-
   return (
-    <Router>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/map' element={<Map/>}/>
-        <Route path='/register' element={<TeamRegister/>}/>
-      </Routes>
-      <Footer/>
-    </Router>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Home />} />  
+      <Route path="/club-register" element={<ClubRegister />} />
+      <Route path="*" element={<Navigate to="/login" />} /> {/* for any other paths */}
+    </Routes>
   )
 }
 

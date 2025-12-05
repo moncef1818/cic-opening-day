@@ -1,0 +1,15 @@
+.Navbar-container{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: aqua;
+}
+
+.Navbar{
+    width: 100%;
+}
+
+.nav-ul{
+    display: flex;
+    justify-content: space-around;
+}
