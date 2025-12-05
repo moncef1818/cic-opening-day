@@ -1,13 +1,35 @@
-.env
-db.sqlite3
-*.sqlite3
-venv/
-__pycache__/
+# Python
 *.pyc
-db.sqlite3
-.env
-venv/
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+/media
+/staticfiles
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
 ctf_flags_20251202_224107.csv
 import_flags.py
