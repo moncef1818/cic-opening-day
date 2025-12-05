@@ -19,7 +19,7 @@ function Leaderboard() {
       try {
         setLoading(true);
         setError(null);
-        const token = localStorage.getItem("access");
+        const token = localStorage.getItem("access_token");
         console.log("Token exists:", !!token);
 
         if (!token) {
