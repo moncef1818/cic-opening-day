@@ -24,4 +24,5 @@ class TeamAdmin(admin.ModelAdmin):
 
 
 
+
 # Register your models here.

@@ -24,7 +24,7 @@ class Team(models.Model):
         verbose_name = "Team"
         verbose_name_plural = "Teams"
     
-    def __str__(self):
+    def str(self):
         return self.name
     
     def set_password(self, raw_password):
@@ -33,4 +33,4 @@ class Team(models.Model):
     
     def check_password(self, raw_password):
         """Verify the team password against the hashed version."""
-        return verify_password(raw_password, self.password)  
+        return verify_password(raw_password, self.password)
