@@ -9,5 +9,5 @@ class StandSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Stand
-        fields = ['id', 'name', 'game_type', 'description', 'duration_minutes']
+        fields = ['id', 'name', 'game_type', 'duration_minutes']
         read_only_fields = ['id']

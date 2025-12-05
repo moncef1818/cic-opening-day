@@ -10,7 +10,7 @@ class StandListView(APIView):
     Get list of all stands.
     
     GET /api/stands/
-    Response: [{id, name, game_type, description, duration_minutes}, ...]
+    Response: [{id, name, game_type, duration_minutes}, ...]
     """
     permission_classes = [IsAuthenticated]
 

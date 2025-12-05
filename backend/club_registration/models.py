@@ -9,7 +9,7 @@ class ClubMember(models.Model):
         ('ai', 'Artificial Intelligence'),
         ('design', 'Design and Social media'),
         ('hr', 'Human Recourses'),
-        ('fpr', 'finance and public relations'),
+        ('fpr', 'Finance and public relations'),
         ('logistics', 'Logistics'),
         ('vib','Vibes'),
         

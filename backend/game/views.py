@@ -6,14 +6,12 @@ from django.db.models import Count, Sum
 from .models import Flag, FlagSubmission
 from .serializers import FlagSubmitSerializer, LeaderboardSerializer
 from teams.models import Team
+import hashlib
+
+from django.contrib.auth.hashers import make_password
 
 class FlagSubmitView(APIView):
-    """
-    Submit a flag code.
-    
-    POST /api/game/flags/submit/
-    Body: {flag_code}
-    """
+    """Submit a flag code."""
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
@@ -31,28 +29,31 @@ class FlagSubmitView(APIView):
         except Team.DoesNotExist:
             return Response({'error': 'Team not found'}, status=status.HTTP_404_NOT_FOUND)
         
-        # Find matching flag by checking hash against all unused flags
-        matching_flag = None
-        unused_flags = Flag.objects.filter(is_used=False)
         
-        for flag in unused_flags:
-            if flag.check_code(flag_code):
-                matching_flag = flag
-                break
+        # Hash submitted flag using SHA256 (NOT Django password hasher!)
+        submitted_hash = hashlib.sha256(flag_code.encode()).hexdigest()
         
-        if not matching_flag:
-            return Response({'error': 'Invalid flag code or already used'}, status=status.HTTP_404_NOT_FOUND)
+        # Direct database lookup
+        try:
+            matching_flag = Flag.objects.get(code_hash=submitted_hash, is_used=False)
+        except Flag.DoesNotExist:
+            return Response({
+                'error': 'Invalid flag code or already used'
+            }, status=status.HTTP_404_NOT_FOUND)
         
-        # Check if team already submitted this specific flag
-        if FlagSubmission.objects.filter(team=team, flag=matching_flag).exists():
-            return Response({'error': 'You already submitted this flag'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if FlagSubmission.objects.filter(team=team, flag__stand=matching_flag.stand).exists():
+            return Response({
+                'error': f'You already submitted a flag from {matching_flag.stand.name}. Only one flag per stand allowed!'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
         
         # Mark flag as used
         matching_flag.is_used = True
         matching_flag.save()
         
         # Create submission
-        submission = FlagSubmission.objects.create(
+        FlagSubmission.objects.create(
             team=team,
             flag=matching_flag,
             awarded_points=matching_flag.base_points
@@ -64,7 +65,7 @@ class FlagSubmitView(APIView):
             'points_earned': matching_flag.base_points,
             'stand': matching_flag.stand.name
         }, status=status.HTTP_201_CREATED)
-
+    
 class LeaderboardView(APIView):
     """
     Get game leaderboard.
@@ -78,7 +79,7 @@ class LeaderboardView(APIView):
         teams = Team.objects.annotate(
             total_points=Sum('flag_submissions__awarded_points'),
             total_gems=Count('flag_submissions', distinct=True)
-        ).filter(total_points__isnull=False).order_by('-total_points', '-total_gems')
+        ).filter(total_points__isnull=False).order_by('-total_gems' , '-total_points')
         
         # Build leaderboard data
         leaderboard = []

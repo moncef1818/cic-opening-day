@@ -9,3 +9,5 @@ db.sqlite3
 venv/
 __pycache__/
 *.pyc
+ctf_flags_20251202_224107.csv
+import_flags.py

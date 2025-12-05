@@ -18,10 +18,6 @@ class Stand(models.Model):
         help_text="Recommended time for this challenge (minutes)"
     )
 
-    description = models.TextField(
-        blank=True,
-        help_text="Detailed description of the challenge"
-    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 
