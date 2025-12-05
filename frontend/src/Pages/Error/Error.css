@@ -1,0 +1,209 @@
+.error-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #021023 0%, #4e779b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.error-content {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.error-icon {
+  color: #F5C542;
+  font-size: 64px;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite; 
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); } 
+  50% { transform: translateY(-10px); }
+}
+
+.error-title {
+  color: #F7D34A;
+  font-size: 32px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.error-message {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 2;
+  padding: 20px 30px;
+}
+
+.register-btn {
+  width: 100%;
+  background:#F7D34A;
+  color: #2c3e50;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(247, 211, 74, 0.4);
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(247, 211, 74, 0.6);
+}
+
+/* Large tablets & small laptops (<= 1024px) */
+@media (max-width: 1024px) {
+  .error-content {
+    max-width: 380px;
+    padding: 35px;
+  }
+  
+  .error-icon {
+    font-size: 56px;
+    margin-bottom: 8px;
+  }
+  
+  .error-title {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+  
+  .error-message {
+    font-size: 17px;
+    margin-bottom: 25px;
+    padding: 18px 25px;
+    line-height: 1.8;
+  }
+  
+  .register-btn {
+    padding: 14px 25px;
+    font-size: 15.5px;
+  }
+}
+
+/* Tablets (<= 768px) */
+@media (max-width: 768px) {
+  .error-content {
+    max-width: 340px;
+    padding: 32px;
+  }
+  
+  .error-icon {
+    font-size: 48px;
+    margin-bottom: 6px;
+  }
+  
+  .error-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    font-size: 16px;
+    margin-bottom: 22px;
+    padding: 16px 22px;
+    line-height: 1.7;
+  }
+  
+  .register-btn {
+    padding: 13px 22px;
+    font-size: 15px;
+    border-radius: 22px;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-8px); }
+  }
+}
+
+/* Phones (<= 480px) */
+@media (max-width: 480px) {
+  .error-content {
+    width: 90%;
+    padding: 28px;
+    border-radius: 15px;
+  }
+  
+  .error-icon {
+    font-size: 40px;
+    margin-bottom: 4px;
+  }
+  
+  .error-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  
+  .error-message {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 14px 20px;
+    line-height: 1.6;
+  }
+  
+  .register-btn {
+    padding: 12px 20px;
+    font-size: 14.5px;
+    border-radius: 20px;
+  }
+  
+  .error-container {
+    padding: 15px;
+  }
+}
+
+/* Small phones (<= 360px) */
+@media (max-width: 360px) {
+  .error-content {
+    width: 92%;
+    padding: 22px;
+    border-radius: 12px;
+  }
+  
+  .error-icon {
+    font-size: 36px;
+    margin-bottom: 2px;
+  }
+  
+  .error-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  
+  .error-message {
+    font-size: 14px;
+    margin-bottom: 18px;
+    padding: 12px 16px;
+    line-height: 1.5;
+  }
+  
+  .register-btn {
+    padding: 11px 18px;
+    font-size: 14px;
+    border-radius: 18px;
+  }
+  
+  .error-container {
+    padding: 12px;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-6px); }
+  }
+}
