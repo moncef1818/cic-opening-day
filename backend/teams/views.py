@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import TokenError
 from .serializers import TeamLoginSerializer, TeamSerializer
 from .models import Team
 from django_ratelimit.decorators import ratelimit
@@ -77,32 +78,12 @@ class TeamRefreshTokenView(APIView):
             }, status=status.HTTP_401_UNAUTHORIZED)
 
 class TeamCurrentView(APIView):
-    """
-    Get current team information from JWT token.
-    
-    GET /api/teams/my/
-    Headers: Authorization: Bearer <access_token>
-    Response: {id, name, created_at}
-    """
+    """Get current team information from JWT token."""
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        # Extract team_id from JWT token
-        token = request.auth
-        team_id = token.get('team_id') if token else None
-        
-        if not team_id:
-            return Response(
-                {'error': 'Invalid token: team_id not found'},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
-        
-        try:
-            team = Team.objects.get(id=team_id)
-            serializer = TeamSerializer(team)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Team.DoesNotExist:
-            return Response(
-                {'error': 'Team not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
+        # Team is now available as request.user
+        team = request.user
+        serializer = TeamSerializer(team)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
