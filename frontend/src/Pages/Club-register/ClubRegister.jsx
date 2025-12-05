@@ -6,6 +6,7 @@ import {
   FaUser, FaSchool, FaGraduationCap, FaPaperPlane 
 } from 'react-icons/fa'
 
+
 const ClubRegister = () => {
   const navigate = useNavigate()
   
@@ -27,6 +28,7 @@ const ClubRegister = () => {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+  const CIC_URL = 'https://cyberinnovatorsclub.vercel.app/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnf2wvAvfbny60MNl4cSxi4MGBpjMrFFOa9ADMfIqkH_Li6EmhxD02p8pU0Hk_aem_B15mgNzOJm0IC0lia2eMBw'
 
   
   // Departments array
@@ -115,6 +117,10 @@ const ClubRegister = () => {
           why_department_1: '',
           why_not_department_1_choose_2: ''
         })
+
+        setTimeout(() => {
+          window.location.href = CIC_URL
+        }, 5000);
         
       }
       
