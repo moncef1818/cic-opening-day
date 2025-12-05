@@ -4,7 +4,7 @@ import Login from './Pages/Login/Login'
 import ClubRegister from './Pages/Club-register/ClubRegister'
 import Error from './Pages/Error/Error'
 import './App.css'
-import Leaderboard from './leaderboard'
+import Leaderboard from './leadboard'
 
 function App() {
 
