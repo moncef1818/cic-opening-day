@@ -325,44 +325,8 @@
   z-index: -1;
 }
 
-/* Responsive for Tablets */
-@media (max-width: 1024px) {
-  .popup-content {
-    width: 90vw;
-    height: calc(90vw * 0.636);
-  }
-  
-  .flag-form {
-    top: 45%;
-    right: 10%;
-    width: 320px;
-  }
-  
-  #cloud-input {
-    width: 320px;
-    padding: 18px 20px;
-    font-size: 1.2rem;
-  }
-  
-  .submit-btn {
-    width: 350px;
-    height: 65px;
-    font-size: 1.4rem;
-  }
-  
-  #ciclogo {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  #cloud-char {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
 /* Responsive for Phones */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .popup-content {
     width: 95vw;
     height: calc(95vw * 0.7);
@@ -407,8 +371,8 @@
   #cloud-char {
     height: 150px;
     width: 150px;
-    top: 50px;
-    left: 200px;
+    top: 130px;
+    left: 230px;
   }
   
   .close-btn {
@@ -420,8 +384,8 @@
   }
 }
 
-/* Small Phones */
-@media (max-width: 580px) {
+
+@media (max-width: 370px) {
   .popup-content {
     height: 500px;
     border-radius: 16px;
@@ -435,6 +399,7 @@
   #cloud-input {
     padding: 14px 18px;
     font-size: 1rem;
+    
   }
   
   .submit-btn {
@@ -451,7 +416,7 @@
     height: 120px;
     width: 120px;
     top: 120px;
-    left: 270px;
+    left: 200px;
   }
   
   .close-btn {
@@ -470,4 +435,5 @@
       0 8px 15px rgba(0, 0, 0, 0.2);
   }
 }
+
 

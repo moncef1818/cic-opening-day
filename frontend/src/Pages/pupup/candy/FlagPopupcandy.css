@@ -325,44 +325,9 @@
   z-index: -1;
 }
 
-/* Responsive for Tablets */
-@media (max-width: 1024px) {
-  .popup-content {
-    width: 90vw;
-    height: calc(90vw * 0.636);
-  }
-  
-  .flag-form {
-    top: 45%;
-    right: 10%;
-    width: 320px;
-  }
-  
-  #candy-input {
-    width: 320px;
-    padding: 18px 20px;
-    font-size: 1.2rem;
-  }
-  
-  .submit-btn {
-    width: 350px;
-    height: 65px;
-    font-size: 1.4rem;
-  }
-  
-  #ciclogo {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  #candy-char {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
 
 /* Responsive for Phones */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .popup-content {
     width: 95vw;
     height: calc(95vw * 0.7);
@@ -407,7 +372,8 @@
   #candy-char {
     height: 150px;
     width: 150px;
-    top: 75px;
+    top: 145px;
+    left: 190px;
   }
   
   .close-btn {
@@ -419,8 +385,8 @@
   }
 }
 
-/* Small Phones */
-@media (max-width: 580px) {
+
+@media (max-width: 370px) {
   .popup-content {
     height: 500px;
     border-radius: 16px;
@@ -434,7 +400,7 @@
   #candy-input {
     padding: 14px 18px;
     font-size: 1rem;
-    width: 260px;
+    
   }
   
   .submit-btn {
