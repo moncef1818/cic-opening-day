@@ -1,8 +1,11 @@
+
+
+
 import React, { useState } from 'react';
-import './FlagPopupmarceline.css';
+import './FlagPopupcloud.css';
 import { TiArrowRightOutline } from "react-icons/ti";
 
-const FlagPopupmarceline = ({ isOpen, onClose, onSubmit }) => {
+const FlagPopupcloud = ({ isOpen, onClose, onSubmit, error }) => {
   const [flag, setFlag] = useState('');
 
   const handleSubmit = (e) => {
@@ -20,15 +23,15 @@ const FlagPopupmarceline = ({ isOpen, onClose, onSubmit }) => {
       <div className="popup-overlay" onClick={onClose} />
       <div className="popup-container">
         <div className="popup-content">
-          <img id='img-marceline' src="marcelinehome.png" alt="marceline" />
+          <img id='img-cloud' src="cloudhome.png" alt="cloud" />
           <button className="close-btn" onClick={onClose}>
-            x
+            <span>×</span>
           </button>
           <img id='ciclogo' src="cic-logo.png" alt="cic" />
-          <img id='marceline-char' src="marceline.png" alt="marceline character" />
+          <img id='cloud-char' src="cloud.png" alt="cloud character" />
           
           <form className="flag-form" onSubmit={handleSubmit}>
-            <input id='marceline-input'
+            <input id='cloud-input'
               type="text"
               value={flag}
               onChange={(e) => setFlag(e.target.value)}
@@ -36,7 +39,7 @@ const FlagPopupmarceline = ({ isOpen, onClose, onSubmit }) => {
               className="flag-input"
               autoFocus
             />
-            
+            {error && <div className="error-message">{error}</div>}
             <button type="submit" className="submit-btn">
               Submit
               <div className="arrow-icon">
@@ -50,4 +53,4 @@ const FlagPopupmarceline = ({ isOpen, onClose, onSubmit }) => {
   );
 };
 
-export default FlagPopupmarceline
+export default FlagPopupcloud;

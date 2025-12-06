@@ -1,0 +1,425 @@
+/* Home.css */
+
+#backgroundimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  z-index: 3;
+  position: fixed;
+}
+
+.pop-ups {
+  position: relative;
+  z-index: 10;
+  bottom: 300px;
+}
+
+#enchrbook {
+  position: relative;
+  z-index: 4;
+  height: 560px;
+  width: 400px;
+  left: 480px;
+  top: 200px;
+}
+
+#mainbimo {
+  position: relative;
+  z-index: 4;
+  bottom: 250px;
+  left: 550px;
+}
+
+#bimobtn {
+  position: fixed;
+  z-index: 6;
+  margin-left: 945px;
+  bottom: 380px;
+  width: 70px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#sandybtn {
+  position: fixed;
+  z-index: 6;
+  top: 440px;
+  left: 810px;
+  width: 70px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#kingbtn {
+  position: fixed;
+  z-index: 6;
+  top: 435px;
+  left: 890px;
+  width: 75px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#marcelinebtn {
+  position: fixed;
+  z-index: 6;
+  top: 550px;
+  left: 940px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#lichbtn {
+  position: fixed;
+  z-index: 6;
+  top: 640px;
+  left: 940px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#cloudbtn {
+  position: fixed;
+  z-index: 6;
+  top: 640px;
+  left: 745px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#candybtn {
+  position: fixed;
+  z-index: 6;
+  top: 540px;
+  left: 740px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#jaykbtn {
+  position: fixed;
+  z-index: 6;
+  top: 480px;
+  left: 740px;
+  width: 80px;
+  height: 50px;
+  background-color: transparent;
+  border: red solid;
+}
+
+#mainciclogo {
+  position: absolute;
+  z-index: 6;
+  left: 700px;
+  height: 200px;
+  width: 400px;
+}
+
+#Games {
+  background-color: rgba(240, 255, 255, 0.205);
+  backdrop-filter: blur(10px);
+  border: rgba(255, 255, 255, 0.575) solid 1px;
+  position: absolute;
+  border-radius: 100px;
+  z-index: 6;
+  top: 232px;
+  left: 700px;
+  height: 100px;
+  width: 400px;
+  color: aliceblue;
+  font-size: 30px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#Games:hover {
+  border: rgba(255, 255, 255, 0.705) solid 1px;
+}
+
+/* Loading Spinner Styles - ADDED FOR GAME PHASE CHECK */
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 10px 20px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  min-width: 300px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loading-spinner .spinner {
+  width: 70px;
+  height: 70px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #667eea;
+  border-right-color: #764ba2;
+  border-bottom-color: #ff6b6b;
+  animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  margin: 0 auto 25px;
+}
+
+.loading-spinner p {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(45deg, #667eea, #764ba2, #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  letter-spacing: 1px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading overlay background */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Optional: Add a pulsing effect to the loading text */
+.loading-spinner p {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Optional: Glow effect for spinner */
+.loading-spinner .spinner {
+  box-shadow: 
+    0 0 20px rgba(102, 126, 234, 0.3),
+    0 0 40px rgba(118, 75, 162, 0.2),
+    inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  #mainciclogo {
+    max-width: 600px;
+    top: 30px;
+  }
+
+  #Games {
+    height: 100px;
+    max-width: 500px;
+    top: 230px;
+    font-size: 30px;
+  }
+
+  #enchrbook {
+    max-width: 600px;
+    margin-top: 100px;
+  }
+
+  #mainbimo {
+    max-width: 300px;
+  }
+
+  /* Original positions for desktop */
+  #bimobtn {
+    margin-left: 945px;
+    bottom: 380px;
+    width: 70px;
+    height: 50px;
+  }
+
+  #sandybtn {
+    top: 440px;
+    left: 810px;
+    width: 70px;
+    height: 50px;
+  }
+
+  #kingbtn {
+    top: 435px;
+    left: 890px;
+    width: 75px;
+    height: 50px;
+  }
+
+  #marcelinebtn {
+    top: 550px;
+    left: 940px;
+    width: 80px;
+    height: 50px;
+  }
+
+  #lichbtn {
+    top: 640px;
+    left: 940px;
+    width: 80px;
+    height: 50px;
+  }
+
+  #cloudbtn {
+    top: 640px;
+    left: 745px;
+    width: 80px;
+    height: 50px;
+  }
+
+  #candybtn {
+    top: 540px;
+    left: 740px;
+    width: 80px;
+    height: 50px;
+  }
+
+  #jaykbtn {
+    top: 480px;
+    left: 740px;
+    width: 80px;
+    height: 50px;
+  }
+  
+  /* Loading spinner responsive */
+  .loading-spinner {
+    min-width: 250px;
+    padding: 30px;
+  }
+  
+  .loading-spinner .spinner {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .loading-spinner p {
+    font-size: 18px;
+  }
+}
+
+/* Large Desktop */
+@media (max-width: 1440px) {
+  #enchrbook {
+    max-width: 700px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 568px) {
+  #mainciclogo {
+    width: 400px;
+    left: 200px;
+  }
+
+  #Games {
+    height: 90px;
+    right: 200px;
+    top: 250px;
+    left: 200px;
+  }
+
+  #enchrbook {
+    max-width: 500px;
+    left: 200px;
+  }
+
+  #mainbimo {
+    max-width: 250px;
+  }
+
+  #bimobtn, #sandybtn, #kingbtn, #marcelinebtn, 
+  #lichbtn, #cloudbtn, #candybtn, #jaykbtn {
+    width: 70px;
+    height: 50px;
+  }
+  
+  /* Loading spinner mobile */
+  .loading-spinner {
+    min-width: 200px;
+    padding: 20px;
+  }
+  
+  .loading-spinner .spinner {
+    width: 50px;
+    height: 50px;
+    border-width: 4px;
+  }
+  
+  .loading-spinner p {
+    font-size: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 375px) {
+  .loading-spinner {
+    min-width: 180px;
+    padding: 15px;
+  }
+  
+  .loading-spinner .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+  }
+  
+  .loading-spinner p {
+    font-size: 14px;
+  }
+}
+
+/* Fade-in animation for the background */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#backgroundimg {
+  animation: fadeIn 1s ease-out;
+}

@@ -53,15 +53,15 @@ const ClubRegister = () => {
     { value: '5', label: 'Fifth Year' }
   ]
 
-  
-  useEffect(() => {
-  
-    const gamesFinished = localStorage.getItem('games_finished') === 'true'
-    if (!gamesFinished) {
-      localStorage.setItem('games_finished', 'true') // haid drtha mabide ysgmou back-end
-    }
+  const schoolChoices = [
+    { value: '', label: ''},
+    { value: '', label: ''},
+    { value: '', label: ''},
+    { value: '', label: ''},
+    { value: '', label: ''},
+    { value: '', label: ''},
+  ]
 
-  }, [navigate])
   
   // Handle input changes
   const handleChange = (e) => {
@@ -92,7 +92,7 @@ const ClubRegister = () => {
     try {
       
       const res = await axios.post(
-        'http://localhost:8000/api/club/register/',
+        'https://cic-opening-day-backend.onrender.com/api/club/register/',
         formData,
         {
           headers: {

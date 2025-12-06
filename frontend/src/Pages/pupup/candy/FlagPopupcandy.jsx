@@ -1,8 +1,10 @@
+
+
 import React, { useState } from 'react';
-import './FlagPopupking.css';
+import './FlagPopupcandy.css';
 import { TiArrowRightOutline } from "react-icons/ti";
 
-const FlagPopupking = ({ isOpen, onClose, onSubmit }) => {
+const FlagPopupcandy = ({ isOpen, onClose, onSubmit, error }) => {
   const [flag, setFlag] = useState('');
 
   const handleSubmit = (e) => {
@@ -20,15 +22,15 @@ const FlagPopupking = ({ isOpen, onClose, onSubmit }) => {
       <div className="popup-overlay" onClick={onClose} />
       <div className="popup-container">
         <div className="popup-content">
-          <img id='img-king' src="kinghome.png" alt="king" />
+          <img id='img-candy' src="candykingdomg.jpg" alt="candy" />
           <button className="close-btn" onClick={onClose}>
             <span>×</span>
           </button>
           <img id='ciclogo' src="cic-logo.png" alt="cic" />
-          <img id='king-char' src="theking.png" alt="king character" />
+          <img id='candy-char' src="candyQueen.png" alt="candy character" />
           
           <form className="flag-form" onSubmit={handleSubmit}>
-            <input id='king-input'
+            <input id='candy-input'
               type="text"
               value={flag}
               onChange={(e) => setFlag(e.target.value)}
@@ -36,7 +38,7 @@ const FlagPopupking = ({ isOpen, onClose, onSubmit }) => {
               className="flag-input"
               autoFocus
             />
-            
+            {error &&  <div className="error-message">{error}</div>}
             <button type="submit" className="submit-btn">
               Submit
               <div className="arrow-icon">
@@ -50,4 +52,4 @@ const FlagPopupking = ({ isOpen, onClose, onSubmit }) => {
   );
 };
 
-export default FlagPopupking;
+export default FlagPopupcandy;

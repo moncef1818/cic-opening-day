@@ -1,8 +1,8 @@
-// FlagPopup.jsx
 import React, { useState } from 'react';
-import './FlagPopuplich.css';
+import './FlagPopupmarceline.css';
 import { TiArrowRightOutline } from "react-icons/ti";
-const FlagPopuplich = ({ isOpen, onClose, onSubmit }) => {
+
+const FlagPopupmarceline = ({ isOpen, onClose, onSubmit, error }) => {
   const [flag, setFlag] = useState('');
 
   const handleSubmit = (e) => {
@@ -20,16 +20,15 @@ const FlagPopuplich = ({ isOpen, onClose, onSubmit }) => {
       <div className="popup-overlay" onClick={onClose} />
       <div className="popup-container">
         <div className="popup-content">
-            <img id='img-lichhome' src="lichback.png" alt="lichhome" />
+          <img id='img-marceline' src="marcelinehome.png" alt="marceline" />
           <button className="close-btn" onClick={onClose}>
-            <span>×</span>
+            x
           </button>
           <img id='ciclogo' src="cic-logo.png" alt="cic" />
-           <img id='lich' src="thelich.png" alt="" />
+          <img id='marceline-char' src="marceline.png" alt="marceline character" />
           
           <form className="flag-form" onSubmit={handleSubmit}>
-           
-            <input id='lich-input'
+            <input id='marceline-input'
               type="text"
               value={flag}
               onChange={(e) => setFlag(e.target.value)}
@@ -37,7 +36,7 @@ const FlagPopuplich = ({ isOpen, onClose, onSubmit }) => {
               className="flag-input"
               autoFocus
             />
-            
+            {error && <div className="error-message">{error}</div>}
             <button type="submit" className="submit-btn">
               Submit
               <div className="arrow-icon">
@@ -51,4 +50,4 @@ const FlagPopuplich = ({ isOpen, onClose, onSubmit }) => {
   );
 };
 
-export default FlagPopuplich;
+export default FlagPopupmarceline

@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
-import './FlagPopupsandy.css';
+import './FlagPopupjayk.css';
 import { TiArrowRightOutline } from "react-icons/ti";
 
-const FlagPopupsandy = ({ isOpen, onClose, onSubmit }) => {
+const FlagPopupjayk = ({ isOpen, onClose, onSubmit, error }) => {
   const [flag, setFlag] = useState('');
 
   const handleSubmit = (e) => {
@@ -21,15 +20,15 @@ const FlagPopupsandy = ({ isOpen, onClose, onSubmit }) => {
       <div className="popup-overlay" onClick={onClose} />
       <div className="popup-container">
         <div className="popup-content">
-          <img id='img-sandy' src="sandyhome.png" alt="sandy" />
+          <img id='img-jayk' src="jaykhome.png" alt="jayk" />
           <button className="close-btn" onClick={onClose}>
             <span>×</span>
           </button>
           <img id='ciclogo' src="cic-logo.png" alt="cic" />
-          <img id='sandy-char' src="sandy.png" alt="sandy character" />
+          <img id='jayk-char' src="jayk.png" alt="jayk character" />
           
           <form className="flag-form" onSubmit={handleSubmit}>
-            <input id='sandy-input'
+            <input id='jayk-input'
               type="text"
               value={flag}
               onChange={(e) => setFlag(e.target.value)}
@@ -37,7 +36,7 @@ const FlagPopupsandy = ({ isOpen, onClose, onSubmit }) => {
               className="flag-input"
               autoFocus
             />
-            
+            {error && <div className="error-message">{error}</div>}
             <button type="submit" className="submit-btn">
               Submit
               <div className="arrow-icon">
@@ -51,4 +50,4 @@ const FlagPopupsandy = ({ isOpen, onClose, onSubmit }) => {
   );
 };
 
-export default FlagPopupsandy;
+export default FlagPopupjayk;

@@ -1,10 +1,8 @@
-
-
 import React, { useState } from 'react';
-import './FlagPopupbimo.css';
+import './FlagPopupking.css';
 import { TiArrowRightOutline } from "react-icons/ti";
 
-const FlagPopupbimo = ({ isOpen, onClose, onSubmit }) => {
+const FlagPopupking = ({ isOpen, onClose, onSubmit, error }) => {
   const [flag, setFlag] = useState('');
 
   const handleSubmit = (e) => {
@@ -22,22 +20,23 @@ const FlagPopupbimo = ({ isOpen, onClose, onSubmit }) => {
       <div className="popup-overlay" onClick={onClose} />
       <div className="popup-container">
         <div className="popup-content">
-          <img id='img-bimo' src="bimohome.png" alt="bimo" />
+          <img id='img-king' src="kinghome.png" alt="king" />
           <button className="close-btn" onClick={onClose}>
             <span>×</span>
           </button>
           <img id='ciclogo' src="cic-logo.png" alt="cic" />
-          <img id='bimo-char' src="bimo1.png" alt="bimo character" />
-            <img id='bimo2-char' src="2bimo.png" alt="bimo character" />
-             <img id='bimo3-char' src="3bimo.png" alt="bimo character" />
+          <img id='king-char' src="theking.png" alt="king character" />
+          
           <form className="flag-form" onSubmit={handleSubmit}>
-            <input id='bimo-input' type="text"  value={flag}
+            <input id='king-input'
+              type="text"
+              value={flag}
               onChange={(e) => setFlag(e.target.value)}
               placeholder="SUBMIT YOUR FLAG"
               className="flag-input"
               autoFocus
             />
-            
+            {error && <div className="error-message">{error}</div>}
             <button type="submit" className="submit-btn">
               Submit
               <div className="arrow-icon">
@@ -51,4 +50,4 @@ const FlagPopupbimo = ({ isOpen, onClose, onSubmit }) => {
   );
 };
 
-export default FlagPopupbimo;
+export default FlagPopupking;
