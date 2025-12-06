@@ -3,18 +3,27 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Count, Sum
-from .models import Flag, FlagSubmission
+from .models import Flag, FlagSubmission , EventPhase
 from .serializers import FlagSubmitSerializer, LeaderboardSerializer
 from teams.models import Team
 import hashlib
-
 from django.contrib.auth.hashers import make_password
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
+@method_decorator(ratelimit(key='user', rate='10/m', method='POST'), name='dispatch')
 class FlagSubmitView(APIView):
-    """Submit a flag code."""
+    """Submit a flag code. Rate limited to 10 submissions per minute."""
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
+        #Check if game has ended
+        if EventPhase.has_ended():
+            return Response({
+                'error': 'Game has ended. Thank you for playing!',
+                'redirect': '/club-register'
+            }, status=status.HTTP_403_FORBIDDEN)
+        
         serializer = FlagSubmitSerializer(data=request.data)
         
         if not serializer.is_valid():
@@ -22,15 +31,10 @@ class FlagSubmitView(APIView):
         
         flag_code = serializer.validated_data['flag_code']
         
-        # Get team from JWT token
-        team_id = request.auth.get('team_id')
-        try:
-            team = Team.objects.get(id=team_id)
-        except Team.DoesNotExist:
-            return Response({'error': 'Team not found'}, status=status.HTTP_404_NOT_FOUND)
+        # Get team from request.user (not request.auth)
+        team = request.user  # ← Changed from request.auth.get('team_id')
         
-        
-        # Hash submitted flag using SHA256 (NOT Django password hasher!)
+        # Hash submitted flag using SHA256
         submitted_hash = hashlib.sha256(flag_code.encode()).hexdigest()
         
         # Direct database lookup
@@ -41,12 +45,11 @@ class FlagSubmitView(APIView):
                 'error': 'Invalid flag code or already used'
             }, status=status.HTTP_404_NOT_FOUND)
         
-
+        # CHECK: Has team already submitted a flag from this stand?
         if FlagSubmission.objects.filter(team=team, flag__stand=matching_flag.stand).exists():
             return Response({
                 'error': f'You already submitted a flag from {matching_flag.stand.name}. Only one flag per stand allowed!'
             }, status=status.HTTP_400_BAD_REQUEST)
-        
         
         # Mark flag as used
         matching_flag.is_used = True
@@ -65,7 +68,7 @@ class FlagSubmitView(APIView):
             'points_earned': matching_flag.base_points,
             'stand': matching_flag.stand.name
         }, status=status.HTTP_201_CREATED)
-    
+
 class LeaderboardView(APIView):
     """
     Get game leaderboard.
@@ -129,5 +132,18 @@ class TeamStatsView(APIView):
             'total_gems': team.total_gems or 0,
             'total_points': team.total_points or 0,
             'rank': rank
+        }, status=status.HTTP_200_OK)
+    
+class EventPhaseView(APIView):
+    """Get current event phase. Public endpoint."""
+    permission_classes = []
+    
+    def get(self, request):
+        has_ended = EventPhase.has_ended()
+        
+        return Response({
+            'game_active': not has_ended,
+            'has_ended': has_ended,
+            'message': 'Game has ended. Join our club!' if has_ended else 'Game is active!'
         }, status=status.HTTP_200_OK)
 

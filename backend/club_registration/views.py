@@ -4,11 +4,15 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from .models import ClubMember
 from .serializers import ClubMemberSerializer
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
+@method_decorator(ratelimit(key='ip', rate='3/m', method='POST'), name='dispatch')
 class ClubRegistrationView(APIView):
     permission_classes = [AllowAny]
 
     def post(self,request):
+        
         serializer = ClubMemberSerializer(data = request.data)
 
         if serializer.is_valid():

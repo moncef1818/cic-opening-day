@@ -1,13 +1,26 @@
 from rest_framework import serializers
 from .models import Flag, FlagSubmission
+import re
 
 
 class FlagSubmitSerializer(serializers.Serializer):
-    """
-    Serializer for flag submission input.
-    Teams submit plain flag code, backend checks hash.
-    """
+    """Serializer for flag submission input with validation"""
     flag_code = serializers.CharField(max_length=200)
+    
+    def validate_flag_code(self, value):
+        # Check format: CIC{...}
+        if not re.match(r'^CIC\{.+\}$', value):
+            raise serializers.ValidationError(
+                "Invalid flag format. Must start with CIC{ and end with }"
+            )
+        
+        # Check minimum length (prevent empty flags like CIC{})
+        if len(value) < 10:
+            raise serializers.ValidationError(
+                "Flag is too short"
+            )
+        
+        return value
 
 
 class FlagSubmissionSerializer(serializers.ModelSerializer):

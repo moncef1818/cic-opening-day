@@ -3,10 +3,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import TokenError
 from .serializers import TeamLoginSerializer, TeamSerializer
 from .models import Team
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
+from rest_framework_simplejwt.exceptions import TokenError
 
-
+@method_decorator(ratelimit(key='ip', rate='5/m', method='POST'), name='dispatch')
 class TeamLoginView(APIView):
     """
     Team login endpoint.
@@ -45,34 +49,41 @@ class TeamLoginView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
+@method_decorator(ratelimit(key='ip', rate='10/m', method='POST'), name='dispatch')
+class TeamRefreshTokenView(APIView):
+    """Refresh access token using refresh token. Rate limited to 10/min."""
+    permission_classes = []
+    def post(self, request):
+        refresh_token = request.data.get('refresh')
+        
+        if not refresh_token:
+            return Response({
+                'error': 'Refresh token is required'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            # Validate and decode refresh token
+            token = RefreshToken(refresh_token)
+            
+            # Generate new access token
+            new_access_token = str(token.access_token)
+            
+            return Response({
+                'access': new_access_token
+            }, status=status.HTTP_200_OK)
+            
+        except TokenError:
+            return Response({
+                'error': 'Invalid or expired refresh token'
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
 class TeamCurrentView(APIView):
-    """
-    Get current team information from JWT token.
-    
-    GET /api/teams/my/
-    Headers: Authorization: Bearer <access_token>
-    Response: {id, name, created_at}
-    """
+    """Get current team information from JWT token."""
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        # Extract team_id from JWT token
-        token = request.auth
-        team_id = token.get('team_id') if token else None
-        
-        if not team_id:
-            return Response(
-                {'error': 'Invalid token: team_id not found'},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
-        
-        try:
-            team = Team.objects.get(id=team_id)
-            serializer = TeamSerializer(team)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Team.DoesNotExist:
-            return Response(
-                {'error': 'Team not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
+        # Team is now available as request.user
+        team = request.user
+        serializer = TeamSerializer(team)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
