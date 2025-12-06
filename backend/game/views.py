@@ -17,12 +17,12 @@ class FlagSubmitView(APIView):
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
-        # Check if game has ended
-        # if EventPhase.has_ended():
-        #     return Response({
-        #         'error': 'Game has ended. Thank you for playing!',
-        #         'redirect': '/club-register'
-        #     }, status=status.HTTP_403_FORBIDDEN)
+        #Check if game has ended
+        if EventPhase.has_ended():
+            return Response({
+                'error': 'Game has ended. Thank you for playing!',
+                'redirect': '/club-register'
+            }, status=status.HTTP_403_FORBIDDEN)
         
         serializer = FlagSubmitSerializer(data=request.data)
         
