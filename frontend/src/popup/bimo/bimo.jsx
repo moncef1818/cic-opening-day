@@ -23,7 +23,7 @@ const Bimo = () => {
   return (
     <div className="app">
       <button id='bimobtn' onClick={handleOpenPopupbimo}>
-        bimo
+        
       </button>
       <FlagPopupbimo
         isOpen={isPopupOpenbimo}

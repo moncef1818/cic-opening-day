@@ -23,7 +23,7 @@ const Lichhome = () => {
   return (
     <div className="app">
       <button id='lichbtn' onClick={handleOpenPopuplich}>
-         lich
+        
       </button>
       <FlagPopuplich
         isOpen={isPopupOpenlich}

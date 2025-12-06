@@ -258,7 +258,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 368px) {
   .popup-content {
     height: 500px; /* Fixed height for very small screens */
     border-radius: 16px;
@@ -272,7 +272,7 @@
   #lich-input {
     padding: 14px 18px;
     font-size: 1rem;
-    width: 258px;
+    width: 220px;
   }
   
   .submit-btn {
@@ -288,8 +288,8 @@
   #lich {
     height: 120px;
     width: 120px;
-      margin-left: 120px;
-    top: 150px;
+      margin-left: 90px;
+    top: 130px;
   }
   
   .close-btn {

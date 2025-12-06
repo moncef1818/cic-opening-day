@@ -324,49 +324,9 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;}
   z-index: -1;
 }
 
-/* Responsive for Tablets */
-@media (max-width: 1024px) {
-  .popup-content {
-    width: 90vw;
-    height: calc(90vw * 0.636);
-  }
-  
-  .flag-form {
-    top: 45%;
-    right: 10%;
-    width: 320px;
-  }
-  
-  #marceline-input {
-    width: 320px;
-    padding: 18px 20px;
-    font-size: 1.2rem;
-  }
-  
-  .submit-btn {
-    width: 350px;
-    height: 65px;
-    font-size: 1.4rem;
-  }
-  
-  #ciclogo {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  #marceline-char {
-    height: 200px;
-  width: 200px;
-  
-  top: 130px;
-  left: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
 
-/* Responsive for Phones */
-@media (max-width: 768px) {
+
+@media (max-width: 480px) {
   .popup-content {
     width: 95vw;
     height: calc(95vw * 0.7);
@@ -411,8 +371,9 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;}
   #marceline-char {
     height: 200px;
     width: 200px;
-    top: 120px;
-    left: 120px;
+    top: 165px;
+    left: 170px;
+    transform: rotate(35deg);
   }
   
   .close-btn {
@@ -425,7 +386,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;}
 }
 
 /* Small Phones */
-@media (max-width: 460px) {
+@media (max-width: 370px) {
   .popup-content {
     height: 500px;
     border-radius: 16px;
@@ -439,6 +400,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;}
   #marceline-input {
     padding: 14px 18px;
     font-size: 1rem;
+   
   }
   
   .submit-btn {
@@ -454,8 +416,9 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;}
   #marceline-char {
     height: 150px;
     width: 150px;
-    top: 145px;
-    left: 80px;
+    top: 125px;
+    transform: rotate(45deg);
+    left: 50px;
   }
   
   .close-btn {
