@@ -92,7 +92,7 @@ const ClubRegister = () => {
     try {
       
       const res = await axios.post(
-        'http://localhost:8000/api/club/register/',
+        'https://cic-opening-day-backend.onrender.com/api/club/register/',
         formData,
         {
           headers: {

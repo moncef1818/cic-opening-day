@@ -3,6 +3,7 @@ import Home from './Pages/Home/Home'
 import Login from './Pages/Login/Login'
 import ClubRegister from './Pages/Club-register/ClubRegister'
 import Error from './Pages/Error/Error'
+import Leaderboard from './leadboard'
 import './App.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         ) }
       <Route path="/" element={<Home />} />  
       <Route path="/club-register" element={<ClubRegister />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="*" element={<Navigate to="/login" />} /> {/* for any other paths */}
     </Routes>
 

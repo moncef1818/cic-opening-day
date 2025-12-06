@@ -44,7 +44,7 @@ const Login = () => {
     
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/team/login/', 
+        'https://cic-opening-day-backend.onrender.com/api/team/login/', 
         { team_name, password },  // send the team name/ password to back-end
         {
           headers: {

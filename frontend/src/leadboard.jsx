@@ -19,7 +19,7 @@ function Leaderboard() {
       try {
         setLoading(true);
         setError(null);
-        const token = localStorage.getItem("access");
+        const token = localStorage.getItem("access_token");
         console.log("Token exists:", !!token);
 
         if (!token) {
@@ -29,7 +29,7 @@ function Leaderboard() {
         }
 
         console.log("Fetching from API...");
-        const res = await fetch("http://localhost:8000/api/game/leaderboard/", {
+        const res = await fetch("https://cic-opening-day-backend.onrender.com/api/game/leaderboard/", {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ function Leaderboard() {
     };
 
     fetchAndSet();
-    const interval = setInterval(fetchAndSet, 5000);
+    const interval = setInterval(fetchAndSet, 30000);
     return () => clearInterval(interval);
   }, []);
 
