@@ -7,6 +7,8 @@ class Team(models.Model):
     Team model with authentication capabilities.
     Compatible with Django's authentication system.
     """
+ 
+
     name = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -16,7 +18,7 @@ class Team(models.Model):
     is_authenticated = True  # Property for authentication checks
     
     class Meta:
-        db_table = 'teams'
+        db_table = 'teams_team'
         ordering = ['name']
     
     def __str__(self):
