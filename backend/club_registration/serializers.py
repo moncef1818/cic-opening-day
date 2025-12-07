@@ -15,9 +15,11 @@ class ClubMemberSerializer(serializers.ModelSerializer):
             'year',
             'department_choice_1',
             'department_choice_2',
+            'department_choice_3',
             'why_department_1',
             'why_not_department_1_choose_2',
-            'registered_at'
+            'registered_at',
+            'why_not_department_1_and_2_choose_3'
         ]
 
     read_only_fields = ['id','registered_at']
@@ -33,10 +35,19 @@ class ClubMemberSerializer(serializers.ModelSerializer):
     def validate(selv, data):
         dept1 = data.get('department_choice_1')
         dept2 = data.get('department_choice_2')
+        dept3 = data.get('department_choice_3')
 
-        if dept1 == dept2 :
+        if (dept1 == dept2):
             raise serializers.ValidationError({
                 'department_choice_2': 'Second department choice must be different from first!'
+            })
+        if (dept1 == dept3):
+            raise serializers.ValidationError({
+                'department_choice_3': 'Third department choice must be different from first!'
+            })
+        if (dept2 == dept3):
+            raise serializers.ValidationError({
+                'department_choice_3': 'Third department choice must be different from second!'
             })
         return data
     

@@ -8,8 +8,6 @@ class ClubMember(models.Model):
         ('eth','Ethical hacking'),
         ('ai', 'Artificial Intelligence'),
         ('design', 'Design and Social media'),
-        ('hr', 'Human Recourses'),
-        ('fpr', 'Finance and public relations'),
         ('logistics', 'Logistics'),
         ('vib','Vibes'),
         
@@ -36,11 +34,23 @@ class ClubMember(models.Model):
     
     # Department Preferences
     department_choice_1 = models.CharField(max_length=20, choices=DEPARTMENT_CHOICES)
+
     department_choice_2 = models.CharField(max_length=20, choices=DEPARTMENT_CHOICES)
+
+    department_choice_3 = models.CharField(max_length=20, choices=DEPARTMENT_CHOICES,null=True)
+
     why_department_1 = models.TextField(help_text="Why did you choose your first department?")
+
     why_not_department_1_choose_2 = models.TextField(
         blank=True,
+        
         help_text="If not accepted to department 1, why department 2?"
+    )
+
+    why_not_department_1_and_2_choose_3 = models.TextField(
+        blank=True,
+        null=True,
+        help_text="If not accepted to neither in department 1 nor 2, why department 3?"
     )
     
     # Metadata
