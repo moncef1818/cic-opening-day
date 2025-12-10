@@ -6,13 +6,18 @@ from .models import ClubMember
 from .serializers import ClubMemberSerializer
 from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
+from django.conf import settings
 
 @method_decorator(ratelimit(key='ip', rate='3/m', method='POST'), name='dispatch')
 class ClubRegistrationView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self,request):
-        
+    def post(self, request, *args, **kwargs):
+        if not getattr(settings, "REGISTRATION_OPEN", True):
+            return Response(
+                {"detail": "Registration is closed."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
         serializer = ClubMemberSerializer(data = request.data)
 
         if serializer.is_valid():
